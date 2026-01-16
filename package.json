@@ -1,4 +1,11 @@
 {
+  "type": "module",
+  "name": "quantops-ib-backend",
+  ...
+}
+
+
+{
   "name": "quantops-backend",
   "version": "1.0.0",
   "description": "Backend API for QuantOps Dashboard",
