@@ -1,14 +1,12 @@
-const express = require("express");
-const cors = require("cors");
+import express from "express";
+import cors from "cors";
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Root route (for browser / health check)
 app.get("/", (req, res) => {
   res.json({
     message: "QuantOps Backend API is running",
@@ -17,14 +15,16 @@ app.get("/", (req, res) => {
   });
 });
 
-// API route used by frontend
-app.get("/api/status", (req, res) => {
+// ✅ ADD THIS (THIS IS WHAT FRONTEND EXPECTS)
+app.get("/api/health", (req, res) => {
   res.json({
-    status: "Backend running",
+    status: "UP",
+    service: "QuantOps Backend",
     time: new Date().toISOString(),
   });
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Backend running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
+
